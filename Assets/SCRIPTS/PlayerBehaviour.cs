@@ -18,9 +18,9 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); // Acceder al rigidbody
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        rb = GetComponent<Rigidbody>(); 
+        Cursor.visible = false; // Para que no se vea el cursor en la pantalla
+        Cursor.lockState = CursorLockMode.Locked; // Para que el cursor esté en el medio 
         transform.position = new Vector3(480, 130, 110);
     }
 
