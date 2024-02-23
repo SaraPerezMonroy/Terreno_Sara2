@@ -5,14 +5,16 @@ using UnityEngine;
 public class Prueba_Disparo : MonoBehaviour
 {
     [SerializeField]
-    GameObject balaTipo1;
+    GameObject balaPrefab;
     [SerializeField]
-    GameObject balaTipo2;
+    GameObject misilPrefab;
+
+    // [SerializeField] GameObject misilPrefab;
 
     [SerializeField]
-    GameObject cannonR;
+    GameObject cannonR; // El empty del cañón para la derecha
     [SerializeField]
-    GameObject cannonL;
+    GameObject cannonL;  // El empty del cañón para la izquierda
 
     int Speed = 130;
 
@@ -20,9 +22,8 @@ public class Prueba_Disparo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ObjectPool.PreLoad(balaTipo1, 5);
-        ObjectPool.PreLoad(balaTipo2, 7);
-
+        ObjectPool.PreLoad(balaPrefab, 10);
+        ObjectPool.PreLoad(misilPrefab, 3);
 
     }
 
@@ -32,33 +33,28 @@ public class Prueba_Disparo : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
-            GameObject Bala1 = ObjectPool.GetObject(balaTipo1);
+            GameObject bala = ObjectPool.GetObject(balaPrefab);
 
-
-            Rigidbody rb = balaTipo1.GetComponent<Rigidbody>();
+            Rigidbody rb = balaPrefab.GetComponent<Rigidbody>();
             //Add force to bullet
             rb.AddForce(transform.TransformDirection(0, 0, 1) * Speed);
-            StartCoroutine(Recicle(balaTipo1, Bala1, 2.0f)); // Pasamos el prefab y la bala del getObject
+            StartCoroutine(Recicle(balaPrefab, bala, 2.0f)); // Pasamos el prefab y la bala del getObject
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            GameObject Bala2 = ObjectPool.GetObject(balaTipo2);
+            GameObject misil = ObjectPool.GetObject(misilPrefab);
 
-            Rigidbody rb_2 = balaTipo2.GetComponent<Rigidbody>();
+            Rigidbody rb_2 = misilPrefab.GetComponent<Rigidbody>();
 
             //Add force to bullet
             rb_2.AddForce(transform.TransformDirection(0, 0, 1) * Speed);
-            StartCoroutine(Recicle(balaTipo2, Bala2, 2.0f));
+            StartCoroutine(Recicle(misilPrefab, misil, 2.0f));
         }
     }
 
-    // Estructura usar métodos pool
-
-    // Object pool.metodoAUsar
-
-    IEnumerator Recicle(GameObject primitive, GameObject go, float time)
+    IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time)
     {
         yield return new WaitForSeconds(time);
-        ObjectPool.RecicleObject(primitive, go);
+        ObjectPool.RecicleObject(prefab, copiaPrefab);
     }
 }
