@@ -6,8 +6,8 @@ public class PruebaDisparo : MonoBehaviour
 {
     [SerializeField]
     GameObject balaPrefab;
-    [SerializeField]
-    GameObject misilPrefab;
+  //  [SerializeField]
+    //GameObject misilPrefab;
 
     // [SerializeField] GameObject bombaPrefab;
 
@@ -19,7 +19,7 @@ public class PruebaDisparo : MonoBehaviour
     void Start()
     {
         ObjectPool.PreLoad(balaPrefab, 10);
-        ObjectPool.PreLoad(misilPrefab, 3);
+       // ObjectPool.PreLoad(misilPrefab, 3);
         impulso = Vector3.forward * bulletSpeed;
     }
 
@@ -46,7 +46,7 @@ public class PruebaDisparo : MonoBehaviour
         }*/
     }
 
-
+ 
     IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time) // Para llamar a la función de reciclado del pool
     {
         yield return new WaitForSeconds(time);
