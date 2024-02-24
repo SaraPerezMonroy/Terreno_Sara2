@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -14,6 +15,11 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 turnMovement;
     public float mouseSensitivity;
 
+    [SerializeField]
+    public GameObject spawn;
+
+    [SerializeField]
+    TextMeshProUGUI speedLabel;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        speedLabel.text = playerSpeed.ToString("00");
         transform.position += transform.forward * playerSpeed * Time.deltaTime;
         turnMovement.x += Input.GetAxis("Mouse X") * mouseSensitivity;
         turnMovement.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -47,16 +53,13 @@ public class PlayerBehaviour : MonoBehaviour
                 playerSpeed -= speedDecrease * Time.deltaTime;
             }
         }
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-       if(collision.gameObject.CompareTag("Terrain"))
+       if(collision.gameObject.CompareTag("Terrain") || collision.gameObject.CompareTag("Enemy"))
         {
-            transform.position = new Vector3(480, 130, 110);
-            Debug.Log("Moriste");
+            transform.position = spawn.transform.position;
         }
     }
 

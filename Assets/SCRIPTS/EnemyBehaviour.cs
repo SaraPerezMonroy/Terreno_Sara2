@@ -9,6 +9,9 @@ public class EnemyBehaviour : MonoBehaviour
     int currentWaypointIndex;
     public float enemySpeed = 20f;
 
+    [SerializeField]
+    public ParticleSystem explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        explosion.transform.position = transform.position;
+        explosion.Play();
         Destroy(gameObject);
     }
 }
