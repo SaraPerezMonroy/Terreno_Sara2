@@ -6,11 +6,6 @@ public class PruebaDisparo : MonoBehaviour
 {
     [SerializeField]
     GameObject balaPrefab;
-  //  [SerializeField]
-    //GameObject misilPrefab;
-
-    // [SerializeField] GameObject bombaPrefab;
-
 
     public float bulletSpeed = 100f;
     Vector3 impulso;
@@ -19,7 +14,6 @@ public class PruebaDisparo : MonoBehaviour
     void Start()
     {
         ObjectPool.PreLoad(balaPrefab, 10);
-       // ObjectPool.PreLoad(misilPrefab, 3);
         impulso = Vector3.forward * bulletSpeed;
     }
 
@@ -28,24 +22,14 @@ public class PruebaDisparo : MonoBehaviour
     {
         if (Input.GetButtonUp("Fire1"))
         {
-            GameObject bala = ObjectPool.GetObject(balaPrefab);
+            GameObject bala = ObjectPool.GetObject(balaPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
+            
             Rigidbody rb_bala = bala.GetComponent<Rigidbody>();
-
-            bala.transform.position = transform.position;
-            rb_bala.velocity = transform.forward * bulletSpeed; // Corregido aquí
+            bala.transform.position = transform.position; // Igualar posición de la bala al cañón
+            rb_bala.velocity = transform.forward * bulletSpeed; 
             StartCoroutine(Recicle(balaPrefab, bala, 2.0f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
         }
-
-        /*if (Input.GetKeyDown(KeyCode.E))
-        {
-            GameObject misil = ObjectPool.GetObject(misilPrefab);
-            Rigidbody rb_misil = misil.GetComponent<Rigidbody>(); // Corregido aquí
-            misil.transform.position = transform.position;
-            rb_misil.velocity = transform.forward * bulletSpeed; // Corregido aquí
-            StartCoroutine(Recicle(misilPrefab, misil, 2.0f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
-        }*/
     }
-
  
     IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time) // Para llamar a la función de reciclado del pool
     {
