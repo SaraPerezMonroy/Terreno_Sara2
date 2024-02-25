@@ -20,7 +20,7 @@ public class PruebaDisparo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             GameObject bala = ObjectPool.GetObject(balaPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
             
