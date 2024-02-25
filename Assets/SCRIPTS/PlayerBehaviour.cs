@@ -14,12 +14,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Vector2 turnMovement;
     public float mouseSensitivity;
+    public float height;
 
     [SerializeField]
     public GameObject spawn;
 
     [SerializeField]
     TextMeshProUGUI speedLabel;
+    [SerializeField]
+    TextMeshProUGUI heightLabel;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +31,15 @@ public class PlayerBehaviour : MonoBehaviour
         Cursor.visible = false; // Para que no se vea el cursor en la pantalla
         Cursor.lockState = CursorLockMode.Locked; // Para que el cursor esté en el medio 
         transform.position = new Vector3(480, 130, 110);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        speedLabel.text = playerSpeed.ToString("00");
+        height = GetComponent<Transform>().position.y;
+        speedLabel.text = playerSpeed.ToString("00") + " kts"; // Kts son nudos en inglés :)
+        heightLabel.text = height.ToString("00") + " miles";
         transform.position += transform.forward * playerSpeed * Time.deltaTime;
         turnMovement.x += Input.GetAxis("Mouse X") * mouseSensitivity;
         turnMovement.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
