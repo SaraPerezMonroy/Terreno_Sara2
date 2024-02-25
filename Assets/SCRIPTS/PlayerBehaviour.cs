@@ -40,6 +40,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField]
     public AudioSource explosionSound;
+    [SerializeField]
+    public AudioSource spaceshipSound;
 
     // Start is called before the first frame update
     void Start()
@@ -104,6 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
             crosshair.SetActive(false);
             UIPlayer.SetActive(false);
             VFXPlayer.SetActive(false);
+            spaceshipSound.Stop();
             explosionSound.Play();
         }
     }
@@ -114,7 +117,8 @@ public class PlayerBehaviour : MonoBehaviour
         transform.rotation = spawn.transform.rotation;
         rb.isKinematic = false;
         rb.GetComponent<Renderer>().enabled = true;
-
+       
+        spaceshipSound.Play();
         crosshair.SetActive(true);
         UIPlayer.SetActive(true);
         VFXPlayer.SetActive(true);
