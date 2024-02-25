@@ -12,6 +12,9 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     public ParticleSystem explosion;
 
+    [SerializeField]
+    public AudioSource explosionSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         explosion.transform.position = transform.position;
         explosion.Play();
+        explosionSound.Play();
         Destroy(gameObject);
     }
 }

@@ -7,6 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     Rigidbody rb;
     public float playerSpeed;
+    public float initialSpeed;
     public float speedIncrease;
     public float speedDecrease;
     public float maxSpeed;
@@ -23,6 +24,22 @@ public class PlayerBehaviour : MonoBehaviour
     TextMeshProUGUI speedLabel;
     [SerializeField]
     TextMeshProUGUI heightLabel;
+
+
+    private float deathTimer = 0f;
+    public bool deathTimerBegin;
+    [SerializeField]
+    GameObject UIPlayer;
+    [SerializeField]
+    GameObject crosshair;
+
+    [SerializeField]
+    public GameObject VFXPlayer;
+
+    public ParticleSystem deathExplosion;
+
+    [SerializeField]
+    public AudioSource explosionSound;
 
     // Start is called before the first frame update
     void Start()
@@ -59,14 +76,48 @@ public class PlayerBehaviour : MonoBehaviour
                 playerSpeed -= speedDecrease * Time.deltaTime;
             }
         }
+
+        if(deathTimerBegin)
+        {
+            deathTimer += Time.deltaTime;
+            playerSpeed = 0;
+            if (deathTimer >= 2)
+            {
+                deathTimer = 0;
+                deathTimerBegin = false;
+                RespawnPlayer();
+            }
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-       if(collision.gameObject.CompareTag("Terrain") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.tag == "Enemy")
         {
-            transform.position = spawn.transform.position;
+            deathTimerBegin = true;
+            rb.GetComponent<Renderer>().enabled = false; // Le desactivamos la malla
+            rb.isKinematic = true; // Le quitamos físicas
+            deathExplosion.Play();
+            deathExplosion.transform.position = transform.position;
+
+            crosshair.SetActive(false);
+            UIPlayer.SetActive(false);
+            VFXPlayer.SetActive(false);
+            explosionSound.Play();
         }
     }
 
+    private void RespawnPlayer()
+    {
+        transform.position = spawn.transform.position;
+        transform.rotation = spawn.transform.rotation;
+        rb.isKinematic = false;
+        rb.GetComponent<Renderer>().enabled = true;
+
+        crosshair.SetActive(true);
+        UIPlayer.SetActive(true);
+        VFXPlayer.SetActive(true);
+        playerSpeed = initialSpeed;
+    }
 }
