@@ -956,6 +956,7 @@ MonoBehaviour:
   - {fileID: 414369924}
   - {fileID: 814324102}
   enemySpeed: 40
+  rotationSpeed: 1.5
   explosion: {fileID: 1777029809}
   explosionSound: {fileID: 1958597414}
 --- !u!65 &67746565
@@ -8780,11 +8781,11 @@ MonoBehaviour:
   playerSpeed: 40
   initialSpeed: 40
   speedIncrease: 8
-  speedDecrease: 5
+  speedDecrease: 6
   maxSpeed: 150
   minSpeed: 20
   turnMovement: {x: 0, y: 0}
-  mouseSensitivity: 0.2
+  mouseSensitivity: 0.3
   height: 0
   spawn: {fileID: 321985628}
   speedLabel: {fileID: 1598984339}
@@ -9498,7 +9499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &409921678
 Transform:
   m_ObjectHideFlags: 0
@@ -10177,6 +10178,7 @@ MonoBehaviour:
   - {fileID: 793627666}
   - {fileID: 906538736}
   enemySpeed: 30
+  rotationSpeed: 1.5
   explosion: {fileID: 1777029809}
   explosionSound: {fileID: 1958597414}
 --- !u!65 &462658924
@@ -11071,6 +11073,7 @@ MonoBehaviour:
   - {fileID: 360754553}
   - {fileID: 217620551}
   enemySpeed: 40
+  rotationSpeed: 1.5
   explosion: {fileID: 1777029809}
   explosionSound: {fileID: 1958597414}
 --- !u!54 &555574361
@@ -19732,7 +19735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &964952449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20944,6 +20947,7 @@ GameObject:
   - component: {fileID: 1084475977}
   - component: {fileID: 1084475976}
   - component: {fileID: 1084475975}
+  - component: {fileID: 1084475978}
   m_Layer: 0
   m_Name: CinematicCamera
   m_TagString: Untagged
@@ -20958,14 +20962,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084475973}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000055595306, y: -0.06742092, z: 0.00009578992, w: 0.99772465}
+  m_LocalPosition: {x: 0.93896484, y: -23.112732, z: -31.310581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1220036295}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 359, y: 356, z: -5}
 --- !u!114 &1084475975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21050,6 +21054,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &1084475978
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084475973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1095972500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27129,6 +27154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1084475974}
+  - {fileID: 1708546660}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32899,6 +32925,7 @@ MonoBehaviour:
   - {fileID: 916240225}
   - {fileID: 437731718}
   enemySpeed: 20
+  rotationSpeed: 1.5
   explosion: {fileID: 1777029809}
   explosionSound: {fileID: 1958597414}
 --- !u!54 &1340153078
@@ -35973,6 +36000,7 @@ MonoBehaviour:
   - {fileID: 751768052}
   - {fileID: 1927624251}
   enemySpeed: 40
+  rotationSpeed: 1.5
   explosion: {fileID: 1777029809}
   explosionSound: {fileID: 1958597414}
 --- !u!65 &1622785347
@@ -36947,6 +36975,65 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1685503534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1708546659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708546660}
+  - component: {fileID: 1708546661}
+  m_Layer: 0
+  m_Name: Timeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708546660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708546659}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.71106, y: -0.6628418, z: 9.869503}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1220036295}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1708546661
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708546659}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -8363690982423836266, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+    value: {fileID: 1084475978}
+  - key: {fileID: 7133308129689823996, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+    value: {fileID: 352120727}
+  - key: {fileID: -6267011522945114636, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+    value: {fileID: 964952448}
+  - key: {fileID: 7995806475508076687, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+    value: {fileID: 409921677}
+  - key: {fileID: 6931274986509505897, guid: 09cd12bec5dafbe428cd49c6e00ac90e, type: 2}
+    value: {fileID: 1084475973}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1001 &1711278266
 PrefabInstance:
   m_ObjectHideFlags: 0
