@@ -72,5 +72,27 @@ public class ObjectPool : MonoBehaviour
         pool[id].Enqueue(objectToRecicle); // Lo metemos en la cola, como pushearlo
         objectToRecicle.SetActive(false); 
     }
-}
+    public static void ClearPool()
+    {
+        foreach (var m_FirstDictionary in pool)
+        {
+            Queue<GameObject> queue = m_FirstDictionary.Value;
+            foreach (GameObject m_Obj in queue)
+            {
+                Destroy(m_Obj);
+            }
+            queue.Clear();
+        }
+
+        pool.Clear();
+
+        foreach (var m_SecondDictionary in parentsPool)
+        {
+            GameObject parent = m_SecondDictionary.Value;
+            Destroy(parent);
+        }
+
+        parentsPool.Clear();
+    }
+  }
 

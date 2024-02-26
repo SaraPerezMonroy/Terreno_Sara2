@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     private float deathTimer = 0f;
-    public bool deathTimerBegin;
+    public bool playerDeath;
     [SerializeField]
     GameObject UIPlayer;
     [SerializeField]
@@ -56,15 +57,21 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         height = GetComponent<Transform>().position.y;
         speedLabel.text = playerSpeed.ToString("00") + " kts"; // Kts son nudos en inglés :)
         heightLabel.text = height.ToString("00") + " miles";
         transform.position += transform.forward * playerSpeed * Time.deltaTime;
-        turnMovement.x += Input.GetAxis("Mouse X") * mouseSensitivity;
-        turnMovement.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
-        transform.localRotation = Quaternion.Euler(-turnMovement.y, turnMovement.x, 0);
 
-        if(playerSpeed < maxSpeed)
+        if (!playerDeath)
+        {
+            turnMovement.x += Input.GetAxis("Mouse X") * mouseSensitivity;
+            turnMovement.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+            transform.localRotation = Quaternion.Euler(-turnMovement.y, turnMovement.x, 0);
+        }
+
+        if (playerSpeed < maxSpeed)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -79,15 +86,16 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
-        if(deathTimerBegin)
+        if(playerDeath)
         {
             deathTimer += Time.deltaTime;
             playerSpeed = 0;
             if (deathTimer >= 2)
             {
                 deathTimer = 0;
-                deathTimerBegin = false;
-                RespawnPlayer();
+                playerDeath = false;
+                ObjectPool.ClearPool();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
 
@@ -97,7 +105,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.tag == "Enemy")
         {
-            deathTimerBegin = true;
+            playerDeath = true;
             rb.GetComponent<Renderer>().enabled = false; // Le desactivamos la malla
             rb.isKinematic = true; // Le quitamos físicas
             deathExplosion.Play();
@@ -109,19 +117,5 @@ public class PlayerBehaviour : MonoBehaviour
             spaceshipSound.Stop();
             explosionSound.Play();
         }
-    }
-
-    private void RespawnPlayer()
-    {
-        transform.position = spawn.transform.position;
-        transform.rotation = spawn.transform.rotation;
-        rb.isKinematic = false;
-        rb.GetComponent<Renderer>().enabled = true;
-       
-        spaceshipSound.Play();
-        crosshair.SetActive(true);
-        UIPlayer.SetActive(true);
-        VFXPlayer.SetActive(true);
-        playerSpeed = initialSpeed;
     }
 }
