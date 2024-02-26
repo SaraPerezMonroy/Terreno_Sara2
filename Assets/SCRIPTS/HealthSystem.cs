@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    // Creo otro script por si acaso quiero ponerle vidas a mi nave 
+    [SerializeField]
+    public ParticleSystem explosionVFX;
 
+    [SerializeField]
+    public AudioSource explosionSound;
 
+    public int hitsToDie = 1;
 
-    void Destroy()
+    public void RecieveHit()
     {
-        //sistema de partículas
-        // destroy objeto
-        // if ha muerto el jugador > game over ; if ha muerto nave > dedito parriba
+        hitsToDie--;
+        if (hitsToDie == 0)
+        {
+            explosionVFX.transform.position = transform.position;
+            explosionVFX.Play();
+            explosionSound.Play();
+            Destroy(gameObject);
+        }
     }
-
-  
 }

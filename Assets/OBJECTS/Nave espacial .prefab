@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2860640532121414290}
   - component: {fileID: 8797890717854969832}
   - component: {fileID: 4596898459980382198}
+  - component: {fileID: 3832394731897484923}
   - component: {fileID: 476578295210493627}
   m_Layer: 0
   m_Name: 'Nave espacial '
@@ -124,8 +125,22 @@ MonoBehaviour:
   - {fileID: 0}
   enemySpeed: 20
   rotationSpeed: 1.5
-  explosion: {fileID: 0}
+  healthSystem: {fileID: 3832394731897484923}
+--- !u!114 &3832394731897484923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374109148372126535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b835c6cdff27ed41baeb45fc0e87a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionVFX: {fileID: 0}
   explosionSound: {fileID: 0}
+  hitsToDie: 3
 --- !u!65 &476578295210493627
 BoxCollider:
   m_ObjectHideFlags: 0

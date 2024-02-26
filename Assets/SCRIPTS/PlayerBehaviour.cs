@@ -58,8 +58,6 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         height = GetComponent<Transform>().position.y;
         speedLabel.text = playerSpeed.ToString("00") + " kts"; // Kts son nudos en inglés :)
         heightLabel.text = height.ToString("00") + " miles";
@@ -104,7 +102,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag =="Terrain" || collision.gameObject.tag == "Enemy")
         {
             playerDeath = true;
             rb.GetComponent<Renderer>().enabled = false; // Le desactivamos la malla

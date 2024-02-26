@@ -10,11 +10,10 @@ public class EnemyBehaviour : MonoBehaviour
     public float enemySpeed = 20f;
     public float rotationSpeed = 1f;
 
-    [SerializeField]
-    public ParticleSystem explosion;
+
 
     [SerializeField]
-    public AudioSource explosionSound;
+    public HealthSystem healthSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        explosion.transform.position = transform.position;
-        explosion.Play();
-        explosionSound.Play();
-        Destroy(gameObject);
+        healthSystem.RecieveHit();
+        
     }
 }
