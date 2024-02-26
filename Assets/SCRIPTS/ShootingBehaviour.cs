@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PruebaDisparo : MonoBehaviour
+public class ShootingBehaviour : MonoBehaviour
 {
     [SerializeField]
     GameObject balaPrefab;
@@ -27,15 +27,15 @@ public class PruebaDisparo : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             GameObject bala = ObjectPool.GetObject(balaPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
-            
+
             Rigidbody rb_bala = bala.GetComponent<Rigidbody>();
             blasterSound.Play();
             bala.transform.position = transform.position; // Igualar posición de la bala al cañón
-            rb_bala.velocity = transform.forward * bulletSpeed; 
-            StartCoroutine(Recicle(balaPrefab, bala, 2.0f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
+            rb_bala.velocity = transform.forward * bulletSpeed;
+            StartCoroutine(Recicle(balaPrefab, bala, 1.5f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
         }
     }
- 
+
     IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time) // Para llamar a la función de reciclado del pool
     {
         yield return new WaitForSeconds(time);
