@@ -134,4 +134,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemySpeed: 10
-  explosion: {fileID: 0}
+  rotationSpeed: 1
+  healthSystem: {fileID: 0}

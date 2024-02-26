@@ -20,7 +20,6 @@ public class VictoryComprobate : MonoBehaviour
         {
             victoryScreen.SetActive(true);
             player.SetActive(false);
-
         }
     }
  }
