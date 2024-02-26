@@ -10,6 +10,10 @@ public class PruebaDisparo : MonoBehaviour
     public float bulletSpeed = 100f;
     Vector3 impulso;
 
+    [SerializeField]
+    public AudioSource blasterSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,7 @@ public class PruebaDisparo : MonoBehaviour
             GameObject bala = ObjectPool.GetObject(balaPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
             
             Rigidbody rb_bala = bala.GetComponent<Rigidbody>();
+            blasterSound.Play();
             bala.transform.position = transform.position; // Igualar posición de la bala al cañón
             rb_bala.velocity = transform.forward * bulletSpeed; 
             StartCoroutine(Recicle(balaPrefab, bala, 2.0f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
