@@ -23750,14 +23750,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a6fe3215a4ed1409525f4cc0a09d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 40
-  initialSpeed: 40
+  playerSpeed: 30
+  initialSpeed: 30
   speedIncrease: 8
   speedDecrease: 10
-  maxSpeed: 100
+  maxSpeed: 90
   minSpeed: 20
   actualSpeed: 0
-  boostSpeed: 40
+  boostSpeed: 20
   boostTime: 3
   turnMovement: {x: 0, y: 0}
   mouseSensitivity: 0.3
@@ -26471,7 +26471,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 555143939}
-  - component: {fileID: 555143940}
   - component: {fileID: 555143941}
   - component: {fileID: 555143942}
   m_Layer: 0
@@ -26496,18 +26495,6 @@ Transform:
   m_Father: {fileID: 352120733}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 3, z: 0}
---- !u!114 &555143940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555143938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35b23fe7ffd28a43b022d64813fa5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &555143941
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26618,7 +26605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balaPrefab: {fileID: 8775859015235207577, guid: 4ca3de772dd0760459accf4f29a1616b,
     type: 3}
-  bulletSpeed: 100
+  bulletSpeed: 120
   blasterSound: {fileID: 555143941}
 --- !u!1 &556815667
 GameObject:
@@ -27102,7 +27089,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603883809}
-  - component: {fileID: 603883810}
   - component: {fileID: 603883811}
   - component: {fileID: 603883812}
   m_Layer: 0
@@ -27127,18 +27113,6 @@ Transform:
   m_Father: {fileID: 352120733}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -3, z: 0}
---- !u!114 &603883810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603883808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35b23fe7ffd28a43b022d64813fa5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &603883811
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27249,7 +27223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balaPrefab: {fileID: 8775859015235207577, guid: b107e7b9151e2804ab992c84a0db4f6a,
     type: 3}
-  bulletSpeed: 100
+  bulletSpeed: 120
   blasterSound: {fileID: 603883811}
 --- !u!1 &606608202
 GameObject:
