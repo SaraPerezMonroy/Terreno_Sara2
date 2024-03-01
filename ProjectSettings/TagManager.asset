@@ -8,6 +8,7 @@ TagManager:
   - pyramid
   - plane
   - Enemy
+  - Boost
   layers:
   - Default
   - TransparentFX

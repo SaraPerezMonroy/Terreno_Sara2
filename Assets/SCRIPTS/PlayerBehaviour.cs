@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,10 @@ public class PlayerBehaviour : MonoBehaviour
     public float speedDecrease;
     public float maxSpeed;
     public float minSpeed;
+    // Para hacer un boosteo de velocidad
+    public float actualSpeed;
+    public float boostSpeed;
+    public float boostTime;
 
     public Vector2 turnMovement;
     public float mouseSensitivity;
@@ -26,7 +31,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI heightLabel;
 
-
     private float deathTimer = 0f;
     public bool playerDeath;
     [SerializeField]
@@ -36,9 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField]
     public GameObject VFXPlayer;
-
     public ParticleSystem deathExplosion;
-
     [SerializeField]
     public AudioSource explosionSound;
     [SerializeField]
@@ -97,7 +99,6 @@ public class PlayerBehaviour : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -116,5 +117,22 @@ public class PlayerBehaviour : MonoBehaviour
             spaceshipSound.Stop();
             explosionSound.Play();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Boost")
+        {
+            actualSpeed = playerSpeed;
+            playerSpeed = maxSpeed + boostSpeed;
+            StartCoroutine(PowerUpTimer(boostTime));
+
+        }
+    }
+
+    IEnumerator PowerUpTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        playerSpeed = actualSpeed;
     }
 }
