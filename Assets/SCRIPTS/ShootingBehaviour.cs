@@ -34,6 +34,7 @@ public class ShootingBehaviour : MonoBehaviour
             rb_bala.velocity = transform.forward * bulletSpeed;
             StartCoroutine(Recicle(balaPrefab, bala, 1.5f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
         }
+       
     }
 
     IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time) // Para llamar a la función de reciclado del pool
