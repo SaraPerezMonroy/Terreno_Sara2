@@ -67,7 +67,7 @@ public class ShootingBehaviour : MonoBehaviour
         }
         if(isReloading)
         {
-            bulletLabel.text = "RELOADING...";
+            bulletLabel.text = "Reloading...";
         }
     }
 
