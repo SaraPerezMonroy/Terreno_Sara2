@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class ThrowingBomb : MonoBehaviour
 {
     [SerializeField]
-    GameObject bombaPrefab;
+    GameObject bombPrefab;
     [SerializeField]
     public float bombSpeed;
 
@@ -24,7 +24,7 @@ public class ThrowingBomb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ObjectPool.PreLoad(bombaPrefab, 1);
+        ObjectPool.PreLoad(bombPrefab, 1);
        
     }
 
@@ -35,32 +35,31 @@ public class ThrowingBomb : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                GameObject bomba = ObjectPool.GetObject(bombaPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
-                Rigidbody rb_bomba = bomba.GetComponent<Rigidbody>();
+                GameObject bomb = ObjectPool.GetObject(bombPrefab); // Igualar nuestro gameobject al de la función GetObject del object pool
+                Rigidbody rb_bomba = bomb.GetComponent<Rigidbody>();
                 bombFalling.Play();
-                bomba.transform.position = transform.position; // Igualar posición de la bala al cañón
+                bomb.transform.position = transform.position; // Igualar posición de la bala al cañón
                 rb_bomba.velocity = transform.forward * bombSpeed;
-                StartCoroutine(Recicle(bombaPrefab, bomba, 2f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
+                StartCoroutine(Recicle(bombPrefab, bomb, 2f)); // Reciclamos la bala, pasamos el prefab y la bala del getObject
                 canBomb = false;
                 StartCoroutine(BombTimer(bombCoolDown)); 
             }
         }
     }
 
-    IEnumerator Recicle(GameObject prefab, GameObject copiaPrefab, float time) // Para llamar a la función de reciclado del pool
+    IEnumerator Recicle(GameObject prefab, GameObject prefabCopy, float time) // Para llamar a la función de reciclado del pool
     {
         yield return new WaitForSeconds(time);
         bombFalling.Stop();
         bombExplosion.Play();
-        bombParticles.transform.position = copiaPrefab.transform.position;   
+        bombParticles.transform.position = prefabCopy.transform.position;   
         bombParticles.Play();
 
-        ObjectPool.RecicleObject(prefab, copiaPrefab);
+        ObjectPool.RecicleObject(prefab, prefabCopy);
     } 
     IEnumerator BombTimer(float bombCoolDown)  
     {
         yield return new WaitForSeconds(bombCoolDown);
         canBomb = true;
     }
-    
 }
